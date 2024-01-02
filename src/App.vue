@@ -1,15 +1,19 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <ProductComponent msg="Welcome to Your Vue.js App"/>
+  <HeaderComponent />
+  <ProductComponent />
+  <FooterComponent />
 </template>
 
 <script>
 import ProductComponent from './components/ProductComponent.vue'
-
+import FooterComponent from './components/FooterComponent.vue';
+import HeaderComponent from './components/HeaderComponent.vue';
 export default {
   name: 'App',
   components: {
-    ProductComponent
+    ProductComponent,
+    FooterComponent,
+    HeaderComponent
   }
 }
 </script>

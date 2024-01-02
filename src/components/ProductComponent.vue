@@ -78,7 +78,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 div.container {
-  max-width: 800px;
+  max-width: 100;
   margin: 0 auto;
 }
 
@@ -90,6 +90,7 @@ p.error {
 }
 
 div.product {
+  max-width: 400px;
   position: relative;
   border: 1px solid #5bd658;
   background-color:  #bcffb8;
