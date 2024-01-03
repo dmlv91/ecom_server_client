@@ -8,12 +8,13 @@
 import ProductComponent from './components/ProductComponent.vue'
 import FooterComponent from './components/FooterComponent.vue';
 import HeaderComponent from './components/HeaderComponent.vue';
+
 export default {
   name: 'App',
   components: {
     ProductComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
   }
 }
 </script>

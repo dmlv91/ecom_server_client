@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = 'http://localhost:5000/api/products/';
+const url = 'api/products/';
 
 class ProductService {
     //get products
@@ -9,10 +9,6 @@ class ProductService {
             .then((res) => {
                 const data = res.data;
                 const dataArray = Object.values(data);
-                console.log(data);
-                for (let product in data) {
-                    console.log(data[product]["_id"])
-                }
                 return dataArray.map(product => ({
                     id: product._id,
                     name: product.name,

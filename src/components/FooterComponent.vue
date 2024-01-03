@@ -1,7 +1,7 @@
 <template>
     <footer class="footer-container">
       <div class="footer-content">
-        <h5>Dāvis Mediņš, Vidzemes Augstskola, E-Biznesa sistēmas</h5>
+        <span class="footer-title">Dāvis Mediņš, Vidzemes Augstskola, E-Biznesa sistēmas</span>
       </div>
     </footer>
   </template>
@@ -10,7 +10,8 @@
   .footer-container {
     text-align: center;
     background-color: #c9c1c1;
-    margin-top: 4rem;
+    margin-top: 1rem;
+    height: fit-content;
   }
   
   .footer-content {
@@ -20,8 +21,10 @@
     margin: 0 auto;
   }
   
-  h5 {
-    margin: 0;
+  .footer-title {
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: 'Roboto',sans-serif;
   }
   </style>
   
