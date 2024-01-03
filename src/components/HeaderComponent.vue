@@ -28,7 +28,7 @@
     },
     methods: {
       toggleAddProductView() {
-        console.log("Toggle product view!");
+        this.$emit("add-product");
       },
     },
   };

@@ -32,7 +32,7 @@
               class="form-control"
               id="productQty"
               placeholder="Enter qty"
-              v-model="product.amount"
+              v-model="product.qty"
             />
           </div>
           <div class="form-group">
@@ -67,7 +67,7 @@
         product: {
           name: "",
           description: "",
-          amount: null,
+          qty: null,
           price: null,
         },
         hasError: false,
@@ -75,9 +75,9 @@
     },
     methods: {
       async addProduct() {
-        const response = await ProductService.addProduct(this.product);
-  
-        if (response.data.success) {
+        const response = await ProductService.createProduct(this.product);
+
+        if (response.data['message'] == 'Product added successfully!') {
           this.hasError = false;
           location.reload();
         } else {
@@ -87,3 +87,59 @@
     },
   };
   </script>
+
+<style scoped>
+  .card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+
+  input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .card-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #ccc;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .btn-success {
+    background-color: #28a745;
+    color: #fff;
+    border: 1px solid #218838;
+    border-radius: 4px;
+    padding: 8px 15px;
+    cursor: pointer;
+  }
+
+  .btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+  }
+
+  .has-error {
+    color: red;
+  }
+</style>
