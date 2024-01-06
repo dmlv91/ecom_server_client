@@ -13,9 +13,13 @@
             <h5>Could not retrieve all products. Please try later!</h5>
           </div>
           <div v-if="!isAddNewProductVisible" class="row">
-            <ProductComponent/>
+            <ProductComponent @add-product="handleAddProduct"/>
           </div>
-          <div v-else><AddProductComponent /></div>
+          <div v-else><AddProductComponent 
+            :initialData = "editProductData"
+            :isEditMode="isEditMode"
+            @add-product="handleAddProduct"
+            /></div>
         </div>
       </section>
       <FooterComponent />
@@ -40,12 +44,21 @@
     data() {
         return {
             isAddNewProductVisible: false,
+            isEditMode: false,
+            editProductData: {},
+            hasError: false,
         };
     },
 
     methods: {
         toggleAddProductView() {
             this.isAddNewProductVisible = !this.isAddNewProductVisible;
+            this.isEditMode = false;
+        },
+        handleAddProduct(productData) {
+          this.editProductData = productData;
+          this.isEditMode = true;
+          this.isAddNewProductVisible = true;
         }
     }
   }

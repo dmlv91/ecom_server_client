@@ -1,7 +1,5 @@
 <template>
   <div class="container">
-    <h1>Products</h1>
-
     <hr>
     <p class="error" v-if="error">{{ error }}</p>
     <div class="products-container">
@@ -16,7 +14,7 @@
         <p class="Numerals">Qty: {{ product.qty }}</p>
        <p class="id">Product ID: {{ product.id }}</p>
 
-        <button @click="editProduct(product.id)">Edit</button>
+        <button @click="editProduct(product)">Edit</button>
         <button @click="deleteProduct(product.id)">Delete</button>
       </div>
     </div>
@@ -42,19 +40,12 @@ export default {
         this.error = 'Failed to load products';
       }
     },
-    async editProduct(productId) {
-      try {
-        const editedProduct = await ProductService.editProduct(productId, { /* edited data */ });
-        console.log(`Edited product:`, editedProduct);
-      } catch (error) {
-        console.error(`Error editing product:`, error);
-      }
+    editProduct(product) {
+      this.$emit("add-product",product);
     },
     async deleteProduct(productId) {
       try {
-        // Replace the following line with your actual delete logic
         await ProductService.deleteProduct(productId);
-        console.log(`Deleted product with ID: ${productId}`);
         this.fetchProducts();
       } catch (error) {
         console.error(`Error deleting product:`, error);
@@ -67,7 +58,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 div.container {
   max-width: 100%;

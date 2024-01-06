@@ -47,8 +47,8 @@
           </div>
           <div class="card-footer align-items-end">
             <div class="col-12 pt-2">
-              <button type="button" class="btn btn-success" @click="addProduct">
-                Add Product
+              <button type="button" class="btn btn-success" @click="isEditMode ? updateProduct() : addProduct()">
+                {{ isEditMode ? 'Update Product' : 'Add Product' }}
               </button>
             </div>
           </div>
@@ -62,6 +62,10 @@
   
   export default {
     name: "AddProduct",
+    props: {
+      initialData: Object,
+      isEditMode: Boolean,
+    },
     data() {
       return {
         product: {
@@ -76,7 +80,6 @@
     methods: {
       async addProduct() {
         const response = await ProductService.createProduct(this.product);
-
         if (response.data['message'] == 'Product added successfully!') {
           this.hasError = false;
           location.reload();
@@ -84,7 +87,24 @@
           this.hasError = true;
         }
       },
+      async updateProduct() {
+        const response = await ProductService.editProduct(this.product.id,this.product);
+        if(response.data['message'] == 'Product parameters edited successfully') {
+          this.hasError = false;
+          location.reload();
+        } else {
+          this.hasError = true;
+        }
+      }
     },
+    watch: {
+      initialData: {
+        handler(newData) {
+          this.product = { ...this.product, ...newData };
+        },
+        immediate: true,
+      }
+    }
   };
   </script>
 
